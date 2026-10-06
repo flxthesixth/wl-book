@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Guild {
+  id             String   @id
+  eligibleRoleIds String[] @default([])
+  logChannelId   String?
+  deadline       DateTime?
+  locked         Boolean  @default(false)
+  registrations  Registration[]
+  snapshots      Snapshot[]
+}
+
+model Registration {
+  id             Int      @id @default(autoincrement())
+  guildId        String
+  guild          Guild    @relation(fields: [guildId], references: [id])
+  discordId      String
+  username       String
+  wallet         String
+  eligibleRoleId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([guildId, discordId])
+  @@unique([guildId, wallet])
+}
+
+model Snapshot {
+  id        Int      @id @default(autoincrement())
+  guildId   String
+  guild     Guild    @relation(fields: [guildId], references: [id])
+  createdAt DateTime @default(now())
+  count     Int
+  csv       String
+
+  @@index([guildId, createdAt])
+}

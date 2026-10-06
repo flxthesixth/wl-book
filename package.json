@@ -1,0 +1,23 @@
+{
+  "name": "discord-whitelist-bot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src.js",
+    "register": "node register.js",
+    "test": "node --test",
+    "lint": "node --check src.js && node --check register.js && node --check test.js",
+    "db:deploy": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "6.19.3",
+    "discord.js": "14.27.0",
+    "dotenv": "18.0.5"
+  },
+  "devDependencies": {
+    "prisma": "6.19.3"
+  },
+  "overrides": {
+    "deepmerge-ts": "8.0.2"
+  }
+}
