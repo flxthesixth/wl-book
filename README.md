@@ -1,5 +1,6 @@
 # WL BOOK
 
+Discord bot: https://discord.com/oauth2/authorize?client_id=1556846631104806954&scope=bot%20applications.commands&permissions=52224
 Discord whitelist registration bot for guilds. Members submit or update an EVM address through a private modal; administrators manage eligible roles, registration windows, and exports. Address format is validated, but wallet ownership is not verified.
 
 ## Commands
